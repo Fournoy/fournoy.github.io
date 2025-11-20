@@ -1,0 +1,222 @@
+/* Remove link color and underline inside cards */
+.card a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: inherit;
+  background: none;
+}
+.card a:visited {
+  color: inherit;
+}
+.card a:hover, .card a:active {
+  color: inherit;
+  text-decoration: underline dotted;
+  background: none;
+}
+/* Documentation cards: always open and clear, but keep color */
+body.documentation .card {
+  /* keep per-card gradients; do not force white background */
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 8px rgba(0,0,0,0.08);
+  opacity: 1;
+}
+body.documentation .card-content {
+  height: auto !important;
+  opacity: 1 !important;
+  transition: none !important;
+}
+    
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg-1: #0f1724; /* deep navy */
+  --bg-2: #162534;
+  --text: #e6eef6;
+
+  --studies-gradient: linear-gradient(135deg,#4158D0,#C850C0);
+  --studies-glow: rgba(65,88,208,0.35);
+
+  /* swap: internship will use the purple creative palette, hackathon uses green/cyan */
+  --internship-gradient: linear-gradient(135deg,#8E2DE2,#4A00E0);
+  --internship-glow: rgba(142,45,226,0.28);
+
+  --hackathon-gradient: linear-gradient(135deg,#43A047,#00BCD4);
+  --hackathon-glow: rgba(0,188,212,0.28);
+
+  --personal-gradient: linear-gradient(135deg,#FF4B2B,#FF416C);
+  --personal-glow: rgba(255,75,43,0.28);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html,body{height:100%}
+
+body{
+  background: linear-gradient(135deg,var(--bg-1),var(--bg-2));
+  color:var(--text);
+  font-family:'JetBrains Mono',monospace;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* background animation container (JS injecte des .matrix-text) */
+.background-animation{
+  position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;
+}
+
+/* canvas background for continuous 'informatique' animation */
+#bg-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:-2;display:block}
+
+/* subtle, continuous 'informatised' wave behind the matrix text */
+.background-wave{position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:0.9}
+.background-wave::before{
+  content:"";position:absolute;inset:0;background:radial-gradient(circle at 10% 25%, rgba(65,88,208,0.10), transparent 8%),
+    radial-gradient(circle at 85% 75%, rgba(255,75,43,0.06), transparent 10%);filter:blur(40px);transform:translateY(0);animation:waveFloat 10s ease-in-out infinite}
+.background-wave::after{
+  content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(90deg, rgba(230,238,246,0.04) 0 1px, transparent 1px 6px),
+    linear-gradient(180deg, rgba(0,0,0,0) 0, rgba(0,0,0,0.05) 100%);mix-blend-mode:overlay;opacity:0.8;transform:translateX(0);animation:waveMove 9s linear infinite}
+
+@keyframes waveFloat{0%{transform:translateY(0)}50%{transform:translateY(-18px)}100%{transform:translateY(0)}}
+@keyframes waveMove{from{transform:translateX(0)}to{transform:translateX(-35%)}}
+
+.matrix-text{
+  position:absolute;top:-100%;left:0;color:rgba(230,238,246,0.12);
+  font-family:'JetBrains Mono',monospace;font-size:14px;white-space:nowrap;
+  text-shadow:0 1px 6px rgba(0,0,0,0.4);will-change:transform,opacity;
+}
+
+@keyframes fall{
+  from{transform:translateY(-120%)}
+  to{transform:translateY(120vh)}
+}
+
+/* page container */
+.container{max-width:1100px;margin:0 auto;padding:48px 20px;position:relative;z-index:1}
+
+.main-title{font-size:36px;text-align:center;margin-bottom:40px;color:var(--text);opacity:0;transform:translateY(-10px);animation:revealTitle .8s ease forwards}
+@keyframes revealTitle{to{opacity:1;transform:none}}
+
+.card-container{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:24px;grid-template-areas:"studies personal" "internship hackathon"}
+
+.card{
+  position:relative;overflow:hidden;border-radius:14px;padding:22px 20px;min-height:220px;color:var(--text);
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s,filter .45s;
+  transform-origin:center;cursor:pointer;z-index:1
+}
+
+.card h2{font-size:20px;margin:0 0 8px 0;padding-top:4px;text-align:center;display:block;position:relative}
+.card h3{font-size:16px;margin-top:8px;color:rgba(255,255,255,0.95)}
+
+.card h2::after{content:'';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:50px;height:2px;background:rgba(255,255,255,0.5);transition:width .3s ease}
+
+/* small subtitle hidden until open */
+.card .card-content{max-height:0;opacity:0;overflow:hidden;transition:max-height .45s ease,opacity .35s ease;padding-top:0}
+.card.active .card-content{opacity:1;max-height:800px;padding-top:12px}
+/* ensure card content sits above placeholder */
+.card .card-content{position:relative;z-index:3}
+
+/* placeholder encrypted text shown when card is closed */
+.card-placeholder{font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,0.38);font-size:13px;line-height:1.45;white-space:pre-wrap;padding-top:12px;filter:blur(1.4px);opacity:1;transition:opacity .35s ease,transform .35s ease;display:block}
+.card-placeholder.hidden{opacity:0;transform:translateY(-6px);pointer-events:none}
+
+/* per-card personalities */
+.card#studies{background:var(--studies-gradient);box-shadow:0 10px 30px var(--studies-glow);grid-area:studies}
+.card#personal{background:var(--personal-gradient);box-shadow:0 10px 30px var(--personal-glow);grid-area:personal}
+.card#internship{background:var(--internship-gradient);box-shadow:0 10px 30px var(--internship-glow);grid-area:internship}
+.card#hackathon{background:var(--hackathon-gradient);box-shadow:0 10px 30px var(--hackathon-glow);grid-area:hackathon}
+
+/* subtle overlay shimmer */
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.06) 48%,rgba(255,255,255,0.06) 52%,transparent 100%);transform:translateX(-110%);pointer-events:none;animation:cardShimmer 3.5s linear infinite}
+@keyframes cardShimmer{from{transform:translateX(-110%)}to{transform:translateX(110%)}}
+
+/* hover / focus look */
+.card:hover{transform:translateY(-8px) scale(1.01);filter:brightness(1.03)}
+
+/* active (opened) card gets larger and shows content) */
+.card.active{transform:scale(1.06) translateY(-16px);box-shadow:0 30px 80px rgba(0,0,0,0.45)}
+
+/* small sections inside */
+.section{margin:12px 0}
+.section h4{margin-bottom:6px;font-size:14px;color:rgba(255,255,255,0.95)}
+
+/* ensure responsive typography */
+@media (max-width:900px){
+  .card-container{grid-template-columns:1fr;grid-template-areas:none}
+  .main-title{font-size:24px}
+  .card{min-height:180px}
+}
+
+/* ---- Card effect overlays (per-card animations) ---- */
+.card-effect{position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0;transition:opacity .35s ease}
+.card.active .card-effect{opacity:1}
+
+/* ensure card foreground content stays above effect (but not the .card-effect element) */
+.card > :not(.card-effect){position:relative;z-index:2}
+
+/* Offensive cybersecurity — greenish pulse + scanning lines */
+.effect-offensive{background:radial-gradient(circle at 50% 20%, rgba(0,0,0,0.0), rgba(0,0,0,0.0) 40%);
+}
+.effect-offensive::before{content:"";position:absolute;left:0;right:0;top:0;height:30%;background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(26,188,156,0.12), rgba(255,255,255,0.03));mix-blend-mode:overlay;animation:scanLine 1.8s linear infinite}
+.effect-offensive::after{content:"";position:absolute;left:10%;top:55%;width:80%;height:80%;background:radial-gradient(circle at 50% 50%, rgba(26,188,156,0.08), transparent 30%);filter:blur(12px);animation:offPulse 2.5s ease-in-out infinite}
+
+@keyframes scanLine{0%{transform:translateX(-110%)}50%{transform:translateX(10%)}100%{transform:translateX(110%)}}
+@keyframes offPulse{0%{transform:scale(0.96);opacity:.6}50%{transform:scale(1.03);opacity:1}100%{transform:scale(.96);opacity:.6}}
+
+/* Network packet flow — dots/lines moving horizontally */
+.effect-network{overflow:hidden}
+.effect-network::before{content:"";position:absolute;left:-20%;top:40%;width:160%;height:2px;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);filter:blur(6px);animation:packets 2.2s linear infinite}
+.effect-network::after{content:"";position:absolute;left:-10%;top:60%;width:8px;height:8px;background:rgba(255,255,255,0.9);border-radius:50%;box-shadow:60px 0 0 rgba(255,255,255,0.12),120px 0 0 rgba(255,255,255,0.08);animation:packetDots 1.6s linear infinite}
+@keyframes packets{0%{transform:translateX(0)}100%{transform:translateX(-40%)}}
+@keyframes packetDots{0%{transform:translateX(0)}100%{transform:translateX(-120px)}}
+
+/* play-once overrides: limit iteration count to 1 when requested */
+.card-effect.play-once.effect-offensive::before{animation-iteration-count:1}
+.card-effect.play-once.effect-offensive::after{animation-iteration-count:1}
+.card-effect.play-once.effect-network::before{animation-iteration-count:1}
+.card-effect.play-once.effect-network::after{animation-iteration-count:1}
+.card-effect.play-once.effect-knowledge::before{animation-iteration-count:1}
+.card-effect.play-once.effect-burst::before{animation-iteration-count:1}
+.card-effect.play-once.effect-burst::after{animation-iteration-count:1}
+
+/* Fallback: use real elements inside .card-effect so animations show reliably */
+.card-effect .ef-before, .card-effect .ef-after{position:absolute;left:0;right:0;pointer-events:none}
+.card-effect .ef-before{top:0;height:30%}
+.card-effect .ef-after{left:10%;top:55%;width:80%;height:80%}
+
+/* map offensive animations to real elements */
+.card-effect.effect-offensive .ef-before{background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(26,188,156,0.12), rgba(255,255,255,0.03));mix-blend-mode:overlay;animation:scanLine 1.8s linear infinite}
+.card-effect.effect-offensive .ef-after{background:radial-gradient(circle at 50% 50%, rgba(26,188,156,0.08), transparent 30%);filter:blur(12px);animation:offPulse 2.5s ease-in-out infinite}
+
+/* map network animations to real elements */
+.card-effect.effect-network .ef-before{left:-20%;top:40%;width:160%;height:2px;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);filter:blur(6px);animation:packets 2.2s linear infinite}
+.card-effect.effect-network .ef-after{left:-10%;top:60%;width:8px;height:8px;background:rgba(255,255,255,0.9);border-radius:50%;box-shadow:60px 0 0 rgba(255,255,255,0.12),120px 0 0 rgba(255,255,255,0.08);animation:packetDots 1.6s linear infinite}
+
+/* map knowledge and burst to ef-before/after as needed */
+.card-effect.effect-knowledge .ef-before{left:0;right:0;top:-10%;height:120%;background:linear-gradient(120deg, rgba(255,255,255,0.02), rgba(255,255,255,0.06), rgba(255,255,255,0.02));transform:skewX(-12deg);opacity:0.9;animation:pageFlip 3.6s ease-in-out 1}
+.card-effect.effect-burst .ef-before{position:absolute;inset:0;background:radial-gradient(circle at 20% 30%, rgba(255,255,255,0.06), transparent 12%),radial-gradient(circle at 80% 70%, rgba(255,255,255,0.04), transparent 8%);filter:blur(10px);animation:burstPulse 2s ease-in-out 1}
+.card-effect.effect-burst .ef-after{position:absolute;left:30%;top:10%;width:40%;height:40%;background:conic-gradient(rgba(255,255,255,0.06), transparent 60%);filter:blur(6px);animation:burstRotate 4s linear 1}
+
+/* ---- ef-wave: directional wave that runs once per card click ---- */
+.card-effect .ef-wave{position:absolute;inset:0;pointer-events:none;opacity:0}
+.card-effect .ef-wave.wave-right{animation:waveRight 900ms cubic-bezier(.2,.9,.3,1) 1;opacity:1}
+.card-effect .ef-wave.wave-left{animation:waveLeft 900ms cubic-bezier(.2,.9,.3,1) 1;opacity:1}
+.card-effect .ef-wave.wave-up{animation:waveUp 900ms cubic-bezier(.2,.9,.3,1) 1;opacity:1}
+.card-effect .ef-wave.wave-down{animation:waveDown 900ms cubic-bezier(.2,.9,.3,1) 1;opacity:1}
+
+.card-effect .ef-wave::before{content:"";position:absolute;left:-10%;right:-10%;height:120%;top:40%;background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.1), rgba(255,255,255,0.06));filter:blur(18px);opacity:.9}
+
+@keyframes waveRight{0%{transform:translateX(-120%);opacity:0}20%{opacity:1}100%{transform:translateX(120%);opacity:0}}
+@keyframes waveLeft{0%{transform:translateX(120%);opacity:0}20%{opacity:1}100%{transform:translateX(-120%);opacity:0}}
+@keyframes waveUp{0%{transform:translateY(120%);opacity:0}20%{opacity:1}100%{transform:translateY(-120%);opacity:0}}
+@keyframes waveDown{0%{transform:translateY(-120%);opacity:0}20%{opacity:1}100%{transform:translateY(120%);opacity:0}}
+
+/* Knowledge / Studies — soft page-flip shimmer */
+.effect-knowledge::before{content:"";position:absolute;left:0;right:0;top:-10%;height:120%;background:linear-gradient(120deg, rgba(255,255,255,0.02), rgba(255,255,255,0.06), rgba(255,255,255,0.02));transform:skewX(-12deg);opacity:0.9;animation:pageFlip 3.6s ease-in-out infinite}
+@keyframes pageFlip{0%{transform:translateX(-120%) skewX(-12deg)}50%{transform:translateX(20%) skewX(-6deg)}100%{transform:translateX(120%) skewX(-12deg)}}
+
+/* Hackathon burst — quick radial pulses and flicker */
+.effect-burst::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 30%, rgba(255,255,255,0.06), transparent 12%),radial-gradient(circle at 80% 70%, rgba(255,255,255,0.04), transparent 8%);filter:blur(10px);animation:burstPulse 2s ease-in-out infinite}
+.effect-burst::after{content:"";position:absolute;left:30%;top:10%;width:40%;height:40%;background:conic-gradient(rgba(255,255,255,0.06), transparent 60%);filter:blur(6px);animation:burstRotate 4s linear infinite}
+@keyframes burstPulse{0%{opacity:.6;transform:scale(.98)}50%{opacity:1;transform:scale(1.02)}100%{opacity:.6;transform:scale(.98)}}
+@keyframes burstRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}

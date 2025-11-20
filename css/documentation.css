@@ -1,0 +1,4 @@
+/* Hide matrix animation on documentation page */
+body.documentation .background-animation {
+    display: none;
+}
