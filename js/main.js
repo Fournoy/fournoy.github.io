@@ -1,50 +1,28 @@
+// js/main.js — laisse .html naviguer normalement, gère seulement les data-page/#hash
 document.addEventListener('DOMContentLoaded', () => {
-    initializeNavigation();
-});
-
-function initializeNavigation() {
-    const navItems = document.querySelectorAll('.nav-item');
-    
-    navItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-            e.preventDefault();
-            const pageName = item.getAttribute('data-page');
-            navigateTo(pageName);
-        });
-    });
-}
-
-function navigateTo(pageName) {
-    // Hide all pages
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(page => page.classList.remove('active'));
-
-    // Show selected page
-    const selectedPage = document.getElementById(pageName);
-    if (selectedPage) {
-        selectedPage.classList.add('active');
-    }
-
-    // Update nav items
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach(item => item.classList.remove('active'));
-
-    const activeNav = document.querySelector(`[data-page="${pageName}"]`);
-    if (activeNav) {
-        activeNav.classList.add('active');
-    }
-
-    // Scroll to top
-    document.querySelector('.main-content').scrollTop = 0;
-}
-
-// Add smooth scroll behavior
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+  document.querySelectorAll('.nav-item').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = (a.getAttribute('href')||'').trim();
+      // si le lien pointe vers un fichier .html, on laisse le navigateur faire son job
+      if (href && href.toLowerCase().endsWith('.html')) return;
+      // sinon, c'est un lien interne (hash / data-page) => SPA
+      const page = a.dataset.page || (href === '#' ? a.getAttribute('data-page') : null);
+      if (page) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        const target = document.getElementById(page);
+        if (target) target.classList.add('active');
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        a.classList.add('active');
+        history.pushState({page}, '', '#' + page);
+      }
     });
+  });
+
+  // Activation selon URL lors du chargement (index.html)
+  const current = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-item').forEach(a => {
+    const href = (a.getAttribute('href')||'').split('/').pop();
+    if (href === current) a.classList.add('active');
+  });
 });

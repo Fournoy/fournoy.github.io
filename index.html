@@ -3,140 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Yugortha Ya</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>YUGNOY - Projects</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cyber-theme.css">
 </head>
 <body>
-    <canvas id="bg-canvas" aria-hidden="true"></canvas>
-    <div class="background-animation"></div>
+    <div class="container">
+        <!-- SIDEBAR NAV -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">YUGNOY</h1>
+                <p class="tagline">Cybersecurity projects</p>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item active" data-page="home">
+                    <span class="icon">💻</span> Main
+                </a>
+                <a href="malware.html" class="nav-item" data-page="malware">
+                    <span class="icon">👾</span> Malware I
+                </a>
+                <a href="puzzlesql.html" class="nav-item" data-page="puzzlesql">
+                    <span class="icon">💉</span> PuzzleSQL
+                </a>
+                <a href="code_analysis1.html" class="nav-item" data-page="compilator">
+                    <span class="icon">⚙️</span> Code Analysis I
+                </a>
+            </nav>
+        </aside>
 
-    <main class="container">
-        <h1 class="main-title">Portfolio – Yugortha A.</h1>
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
 
-        <div class="card-container">
+<section id="home" class="page active">
+                <div class="page-header cyber-header">
+                    <h1 class="page-title">Welcome to my projects review</h1>
+                    <p class="page-subtitle">From system exploitation to malware development</p>
+                </div>
 
-            <!-- ÉTUDES -->
-            <div class="card" id="studies">
-                <h2>Études</h2>
-                <div class="card-content">
-                    <h3>BTS Cybersécurité Informatique, Électronique et Réseau</h3>
-
-                    <div class="section">
-                        <h4>Projets réalisés</h4>
-                        <h5>Système embarqué pour faciliter la récupération des résultats en biathlon (configuration serveur et programmation système)</h5>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="card-icon">🔐</div>
+                        <h3>Exploit Lab</h3>
+                        <p>Soon...</p>
                     </div>
 
-                    <div class="section"> 
-                        <h4>Compétences développées</h4>
-                        <h5>
-                            Bash, Python, C++, SQL, JS, HTML, CSS, POO, programmation fonctionnelle, notions DevOps (GitLab CI), réseau (CCNA 1)
-                        </h5>
+                    <div class="project-card">
+                        <div class="card-icon">👾</div>
+                        <h3>Malware Dev</h3>
+                        <p>Bypass Windows Defender with Keylogger in Python & C</p>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="card-icon">🛠️</div>
+                        <h3>Tool Project</h3>
+                        <p>PuzzleSQL: Python package for custom automated SQL injection</p>
                     </div>
                 </div>
-            </div>
 
-            <!-- PROJETS PERSO -->
-            <div class="card" id="personal">
-                <h2>Projets personnels</h2>
-                <div class="card-content">
-
-                    <div class="section">
-                        <h4>Projets</h4>
-
-                        <h5>
-                            <a href="https://github.com/Fournoy" target="_blank">Mes projets cybersécurité</a>
-                        </h5>
-
-                        <h5>
-                            Développement d’un package Python destiné à automatiser l’exploitation de vulnérabilités SQLi sur des environnements de test.  
-                            Travail sur les payloads, l'obfuscation, les requêtes HTTP et l’automatisation.
-                        </h5>
-
-                        <p>------------------------------------------------------</p>
-
-                        <h5>
-                            Développement d'un keylogger en python et C++, avec comme objectif : outre-passé la sécurité de Windows Defender. 
-                        </h5> 
-                        <h6>
-                            (Bientôt : développement d'un malware type file-less avec technologie native windows)
-                        </h6>
-
-                        <br>
-
-                        <h5>
-                            <a href="https://gitlab.com/users/yugortha/projects" target="_blank">Mes projets informatiques</a>
-                        </h5>
-                        <h5>
-                            Intégration d’un pipeline GitLab CI avec analyse de sécurité automatisée (analyse statique, recherche de patterns vulnérables, génération de rapports) [En cours...]
-                        </h5>
-                        <br>
-
-                        <h4>Site Internet</h4>
-                        <h5><a href="https://gitlab.com/yugortha/yugortha-a.gitlab.io" target="_blank">Bientôt disponible</a></h5>
-                        <h5>
-                            Documentation de PuzzleSQL et travaux d’analyse autour des mécanismes d’obfuscation et de détection côté antivirus (Windows Defender).
-                        </h5>
-                    </div>
-
+                <div class="cta-section">
+                    <p class="cta-text">My new project: A malware (keylogger) that can bypass Windows Defender using Nuitka and Clang-cl!</p>
+                    <button class="btn btn-primary" onclick="navigateTo('malware.html')">Go to Malware Creation 🧪</button>
                 </div>
-            </div>
 
-            <!-- ALTERNANCE -->
-            <div class="card" id="internship">
-                <h2>Alternance 2024-2026 </h2>
-                <div class="card-content">
+                <hr class="divider">
+                <p class="footer-text">More projects and write-ups will be added ;)</p>
+            </section>
+        </main>
+    </div>
 
-                    <div class="section">
-                        <h4>Missions principales</h4>
-                        <h5>Administration système, Active Directory, scripting, support technique et gestion de tickets</h5>
-                    </div>
-
-                    <div class="section">
-                        <h4>Projet réalisé</h4>
-                        <h5>
-                            <a href="documentation_projet_alternance.html">
-                                Développement d’un logiciel centralisant des scripts pour automatiser certaines tâches SI
-                            </a>
-
-                        </h5>
-                    </div>
-
-                    <div class="section">
-                        <h4>Compétences acquises</h4>
-                        <h5>
-                            C++, PowerShell, Batch, administration AD, gestion de projet, travail en équipe, autonomie
-                        </h5>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- HACKATHON -->
-            <div class="card" id="hackathon">
-                <h2>Challenge & Hackathon</h2>
-                <div class="card-content">
-
-                    <div class="section">
-                        <h4>Challenge</h4>
-                        <h5>DeepReview Rang - 25/99</h5>
-                        <h5>Portswigger - Côté Serveur - SQLi, SSRF, Acces Control, Path Traversal</h5>
-                    </div>
-
-                    <div class="section">
-                        <h4>Participations</h4>
-                        <h5>Prévision : FOXYHACK – Base 105 d’Evreux</h5>
-                    </div>
-
-                    <div class="section">
-                        <h4>Objectifs</h4>
-                        <h5>Développement d’un système de communication sécurisé (projet en cours)</h5>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

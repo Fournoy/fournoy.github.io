@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PuzzleSQL - YUGNOY</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cyber-theme.css">
+</head>
+<body>
+    <div class="container">
+        <!-- SIDEBAR NAV -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">YUGNOY</h1>
+                <p class="tagline">Cybersecurity projects</p>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <span class="icon">💻</span> Main
+                </a>
+                <a href="malware.html" class="nav-item">
+                    <span class="icon">👾</span> Malware I
+                </a>
+                <a href="puzzlesql.html" class="nav-item">
+                    <span class="icon">💉</span> PuzzleSQL
+                </a>
+                <a href="code_analysis1.html" class="nav-item">
+                    <span class="icon">⚙️</span> Code Analysis I
+                </a>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+<section id="puzzlesql" class="page">
+                <div class="page-header cyber-header">
+                    <h1 class="page-title">PuzzleSQL 💉</h1>
+                    <p class="page-subtitle">Package to automate your SQL injection</p>
+                </div>
+
+                <div class="content-section">
+                    <p><strong>PuzzleSQL</strong> is a Python package designed to simplify and speed up the automation of SQL injections (SQLi). It offers pre-built functions that users can assemble like puzzle pieces to create custom scripts.</p>
+                    <a href="https://github.com/Fournoy/PuzzlesSQL" class="btn btn-secondary" target="_blank">GitHub Repository</a>
+                </div>
+
+                <div class="content-section">
+                    <h2>Main Features</h2>
+                    <ul>
+                        <li><strong>SQL Injection Automation:</strong> Provides functions to automate time-based and error-based SQL injections</li>
+                        <li><strong>Binary Search Algorithm:</strong> Uses binary search (O(log n)) instead of linear search for faster data extraction</li>
+                        <li><strong>Customization:</strong> Users can assemble functions like puzzle pieces to create scripts tailored to their needs</li>
+                        <li><strong>Evolving Support:</strong> Future support for WAF bypass techniques and out-of-band SQL injection with DNS/HTTP server</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h2>Binary Search Advantage</h2>
+                    <p>PuzzleSQL uses binary search which provides O(log n) complexity compared to linear search's O(n). This is especially beneficial for Blind SQLi when extracting passwords or information:</p>
+                    <ul>
+                        <li>Linear search (n): Tries every possible value</li>
+                        <li>Binary search (log n): Divides data in half each iteration, finding answer exponentially faster</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h2>Binary Search Function</h2>
+                    <pre><code class="code-block">def binary_search_boolean(result_bool: bool, operator1: str, 
+                           hight: int, low: int, binary_average: int) -> int:
+    if result_bool == True and operator1 == '<':
+        hight = binary_average - 1
+    if result_bool == True and operator1 == '>':
+        low = binary_average + 1
+    if result_bool == False and operator1 == '>':
+        hight = binary_average - 1
+    if result_bool == False and operator1 == '<':
+        low = binary_average + 1
+    return hight, low, binary_average</code></pre>
+                    <p>This function refines the boundaries of a binary search based on SQL injection test results, helping determine the correct numerical value.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Sending Payloads - Time-Based SQLi</h2>
+                    <pre><code class="code-block">def sending_payload_for_time_based_SQLi_getv(payload_parameter1: str, 
+                                               payload_parameter2: str,
+                                               url: str, indice: int, 
+                                               cookies1: None, cookies2: None) -> bool:
+                                                    start_time = time.time()
+                                                    r = requests.get(url, cookies=cookies1)
+                                                    end_time = time.time()
+                                                    result_bool = (end_time - start_time) >= 5
+                                                    
+                                                    start_time = time.time()
+                                                    r = requests.get(url, cookies=cookies2)
+                                                    end_time = time.time()
+                                                    result_control = (end_time - start_time) >= 5
+                                                    
+                                                    return result_bool, result_control</code></pre>
+                    <p>This function sends HTTP requests with different payloads and measures response time to detect time-based SQL injection vulnerabilities.</p>
+                </div>
+
+                <div class="info-box info-primary" style="background-color: rgba(255, 0, 51, 0.15); border-left-color: #FF0033;">
+                    <p>⚠️ <strong>Project Status:</strong> PuzzleSQL is currently on PAUSE</p>
+                </div>
+
+                <div style="text-align: center; margin: 2rem 0;">
+                    <img src="assets/image/project_PuzzleSQL_in_pause.gif" alt="Project on Pause" style="max-width: 300px; border-radius: 5px;">
+                </div>
+            </section>
+
+            <!-- COMPILATOR PAGE -->
+            
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
