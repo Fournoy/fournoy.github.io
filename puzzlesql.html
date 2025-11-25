@@ -12,14 +12,14 @@
         <!-- SIDEBAR NAV -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <h1 class="logo">YUGNOY</h1>
+                <h1 class="logo">Fournoy - Yugortha</h1>
                 <p class="tagline">Cybersecurity projects</p>
             </div>
             <nav class="nav-menu">
                 <a href="index.html" class="nav-item">
                     <span class="icon">💻</span> Main
                 </a>
-                <a href="malware.html" class="nav-item">
+                <a href="malware1.html" class="nav-item">
                     <span class="icon">👾</span> Malware I
                 </a>
                 <a href="puzzlesql.html" class="nav-item">
@@ -36,7 +36,7 @@
 
 <section id="puzzlesql" class="page">
                 <div class="page-header cyber-header">
-                    <h1 class="page-title">PuzzleSQL 💉</h1>
+                    <h1 class="page-title">PuzzleSQL 💉 - (In construction...) </h1>
                     <p class="page-subtitle">Package to automate your SQL injection</p>
                 </div>
 
@@ -66,23 +66,24 @@
 
                 <div class="content-section">
                     <h2>Binary Search Function</h2>
-                    <pre><code class="code-block">def binary_search_boolean(result_bool: bool, operator1: str, 
+                    <pre><code>def binary_search_boolean(result_bool: bool, operator1: str, 
                            hight: int, low: int, binary_average: int) -> int:
-    if result_bool == True and operator1 == '<':
-        hight = binary_average - 1
-    if result_bool == True and operator1 == '>':
-        low = binary_average + 1
-    if result_bool == False and operator1 == '>':
-        hight = binary_average - 1
-    if result_bool == False and operator1 == '<':
-        low = binary_average + 1
-    return hight, low, binary_average</code></pre>
+                            if result_bool == True and operator1 == '<':
+                                hight = binary_average - 1
+                            if result_bool == True and operator1 == '>':
+                                low = binary_average + 1
+                            if result_bool == False and operator1 == '>':
+                                hight = binary_average - 1
+                            if result_bool == False and operator1 == '<':
+                                low = binary_average + 1
+                            return hight, low, binary_average
+</code></pre>
                     <p>This function refines the boundaries of a binary search based on SQL injection test results, helping determine the correct numerical value.</p>
                 </div>
 
                 <div class="content-section">
                     <h2>Sending Payloads - Time-Based SQLi</h2>
-                    <pre><code class="code-block">def sending_payload_for_time_based_SQLi_getv(payload_parameter1: str, 
+                    <pre><code>def sending_payload_for_time_based_SQLi_getv(payload_parameter1: str, 
                                                payload_parameter2: str,
                                                url: str, indice: int, 
                                                cookies1: None, cookies2: None) -> bool:
