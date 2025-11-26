@@ -1,5 +1,36 @@
 // js/main.js — laisse .html naviguer normalement, gère seulement les data-page/#hash
 document.addEventListener('DOMContentLoaded', () => {
+  // Gestion des dropdowns
+  document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      const dropdown = toggle.closest('.nav-dropdown');
+      const menu = dropdown.querySelector('.dropdown-menu');
+      
+      // Fermer les autres dropdowns
+      document.querySelectorAll('.dropdown-menu').forEach(m => {
+        if (m !== menu) {
+          m.classList.remove('active');
+          m.previousElementSibling.classList.remove('active');
+        }
+      });
+      
+      // Toggle le dropdown courant
+      menu.classList.toggle('active');
+      toggle.classList.toggle('active');
+    });
+  });
+
+  // Fermer le dropdown quand on clique sur un item
+  document.querySelectorAll('.dropdown-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const menu = item.closest('.dropdown-menu');
+      const toggle = menu.previousElementSibling;
+      menu.classList.remove('active');
+      toggle.classList.remove('active');
+    });
+  });
+
   document.querySelectorAll('.nav-item').forEach(a => {
     a.addEventListener('click', e => {
       const href = (a.getAttribute('href')||'').trim();

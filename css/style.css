@@ -95,6 +95,71 @@ body {
     font-size: 1.2rem;
 }
 
+/* DROPDOWN MENU */
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+}
+
+.dropdown-toggle::after {
+    content: '▼';
+    float: right;
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-toggle.active::after {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-left: 3px solid var(--accent-red);
+    margin-top: 0.5rem;
+    padding: 0.5rem 0;
+    border-radius: 3px;
+    animation: slideDown 0.3s ease;
+}
+
+.dropdown-menu.active {
+    display: flex;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-item {
+    padding: 0.6rem 1rem 0.6rem 2rem;
+    color: var(--text-light);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    border-left: 3px solid transparent;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(255, 0, 51, 0.1);
+    border-left-color: var(--accent-red);
+    color: var(--accent-red);
+}
+
 /* MAIN CONTENT */
 .main-content {
     flex: 1;

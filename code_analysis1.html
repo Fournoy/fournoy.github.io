@@ -10,34 +10,52 @@
 <body>
     <div class="container">
         <!-- SIDEBAR NAV -->
-        <aside class="sidebar">
+      <aside class="sidebar">
             <div class="sidebar-header">
-                <h1 class="logo">Fournoy - Yugortha</h1>
+                <h1 class="logo">Fournoy - Yugortha </h1>
                 <p class="tagline">Cybersecurity projects</p>
             </div>
             <nav class="nav-menu">
-                <a href="index.html" class="nav-item">
+                <a href="index.html" class="nav-item active" data-page="home">
                     <span class="icon">💻</span> Main
                 </a>
-                <a href="malware1.html" class="nav-item">
-                    <span class="icon">👾</span> Malware I
-                </a>
-                <a href="puzzlesql.html" class="nav-item">
-                    <span class="icon">💉</span> PuzzleSQL
-                </a>
-                <a href="code_analysis1.html" class="nav-item">
-                    <span class="icon">⚙️</span> Code Analysis I
-                </a>
+                
+                <div class="nav-dropdown">
+                    <button class="nav-item dropdown-toggle">
+                        <span class="icon">👾</span> Malware
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="malware1.html" class="dropdown-item">Malware I</a>
+                        <a href="malware2.html" class="dropdown-item">Malware II</a>
+                    </div>
+                </div>
+
+                <div class="nav-dropdown">
+                    <button class="nav-item dropdown-toggle">
+                        <span class="icon">🔐</span> Lab
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="code_analysis1.html" class="dropdown-item">Code Analysis I</a>
+                    </div>
+                </div>
+
+                <div class="nav-dropdown">
+                    <button class="nav-item dropdown-toggle">
+                        <span class="icon">🛠️</span> Tools
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="puzzlesql.html" class="dropdown-item">PuzzleSQL</a>
+                    </div>
+                </div>
             </nav>
         </aside>
-
         <!-- MAIN CONTENT -->
         <main class="main-content">
 
 <section id="compilator" class="page">
                 <div class="page-header cyber-header">
                     <h1 class="page-title">CVE-2021-38294 - Apache Storm Nimbus | Code analysis and PoC</h1>
-                    <p class="page-subtitle">This idea come from DeepReview's challenges</p>
+                    <p class="page-subtitle">This page is in construction..........</p>
                 </div>
                 <div>
                     <a href="https://deepreview.app" target="_blank">See challenge here !</a>
@@ -47,19 +65,67 @@
                 <div class="toc-section">
                     <h2>Summary</h2>
                     <ul class="toc">
-                        <li><a href="#intro">TL;DR</a></li>
+                        <li><a href="#TLDR">TL;DR</a></li>
                         <li><a href="#Context">Context</a></li>
                         <li><a href="#analysis">Code Analysis (take from DeepReview's Challenges)</a></li>
-                        <li><a href="#soon">Soon</a></li>
-                        <li><a href="#soon">Soon</a></li>
-                        <li><a href="#soon">Soon</a></li>
-                        <li><a href="#soon">Soon</a></li>
+                        <li><a href="#soon1">Soon 1</a></li>
+                        <li><a href="#soon2">Soon 2</a></li>
+                        <li><a href="#soon3">Soon 3</a></li>
+                        <li><a href="#soon4">Soon 4</a></li>
                     </ul>
                 </div>
 
-                <section id="intro" class="content-section">
-                    <h2>Introduction</h2>
-                    <p>This page is under construction, soon we will analyse a Java code containing a reel vulnerability </p>
+                <section id="TLDR" class="content-section">
+                    <h2>Introduction : TL;DR</h2>
+                    <h4>
+                        Recently i played with DeepReview. A website proposing challenges in code analysis 
+                        where the main objective is to fund vulnerabilities on reel vulnerable code, from 
+                        reel technologie based on reel CVE.
+
+                        For this article we will see a command injection occured in Apache Storm Nimbus, the name of the CVE-2021-38294.
+                    </h4>
+
+                    <h4>
+                        Storm Nimbus is a system who can treat big data in real time.
+                        Storm Nimbus is made in order to manage a large volume of data and 
+                        X used it (in time of twitter) for processing tweets.
+                    </h4>
+
+                    <h4>
+                        In this article, we will analyse the piece of code containing the vulnerability
+                        coming straight from DeepReview. Of course, we will used also the official github 
+                        repo to see everything with more details.
+                    </h4>
+
+
+                </section>
+
+                <section id="Context" class="content-section">
+                    <h2>Context</h2>
+
+                    <h4>
+                        
+                    </h4>
+                </section>
+
+                <section id="analysis" class="content-section">
+                    <h2>Code Analysis (take from DeepReview's Challenges)</h2>
+                </section>
+
+                <section id="soon1" class="content-section">
+                    <h2>Soon 1</h2>
+                </section>
+
+                <section id="soon2" class="content-section">
+                    <h2>Soon 2</h2>
+                </section>
+
+                <section id="soon3" class="content-section">
+                    <h2>Soon 3</h2>
+                </section>
+
+                <section id="soon4" class="content-section">
+                    <h2>Soon 4</h2>
                 </section>
         </main>
     </div>
