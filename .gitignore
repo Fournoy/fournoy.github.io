@@ -1,0 +1,11 @@
+
+
+# Fichiers temporaires
+*.tmp
+*.temp
+*.bak
+*~
+
+# IDE
+.vscode/
+.idea/
