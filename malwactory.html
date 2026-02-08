@@ -26,7 +26,8 @@
                     </button>
                     <div class="dropdown-menu">
                         <a href="malware1.html" class="dropdown-item">Malware I</a>
-                        <a href="malware_ci.html" class="dropdown-item active">CI Pipeline for Malware Dev</a>
+                        <a href="malwactory.html" class="dropdown-item active">Malwactory</a>
+
                     </div>
                 </div>
 
@@ -54,30 +55,26 @@
         <main class="main-content">
             <section id="ci-pipeline" class="page">
                 <div class="page-header cyber-header red">
-                    <h1 class="page-title">Continuous Integration</h1>
-                    <p class="page-subtitle">⚙️ GitLab CI automation for integration workflows</p>
+                    <h1 class="page-title">Malwactory</h1>
+                    <p class="page-subtitle">Developper tool for malware development</p>
                 </div>
 
                 <div class="toc-section">
                     <h2>Summary</h2>
                     <ul class="toc">
-                        <li><a href="#tldr">TL;DR</a></li>
+                        <li><a href="#tldr">Malwactory project</a></li>
                         <li><a href="#context">Context</a></li>
                         <li><a href="#problem">Problem</a></li>
                         <li><a href="#solution">Solution</a></li>
-                        <li><a href="#integration">INTEGRATION</a>
-                            <ul>
-                                <li><a href="#pre-commit">Pre-commit</a></li>
-                                <li><a href="#pipelines">Pipelines</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="#malwactory_construction">Malwactory construction</a>
+                        <li><a href="#pipelines">Pipelines</a></li>
                         <li><a href="#conclusion">Conclusion</a></li>
                         <li><a href="#annexes">Annexes</a></li>
                     </ul>
                 </div>
 
                 <div class="info-box info-primary">
-                    <p>Go to <a href="https://gitlab.com/yugortha/ci_malware_dev" target="_blank">the repo</a> to see the complete CI configuration and yml scripts.</p>
+                    <p>Go to <a href="https://gitlab.com/yugortha/ci_malware_dev" target="_blank">the repo</a> to see the complete project.</p>
                 </div>
 
                 <div class="info-box info-warning">
@@ -86,10 +83,10 @@
 
                 <!-- TL;DR SECTION -->
                 <section id="tldr" class="content-section">
-                    <h2>TL;DR</h2>
+                    <h2>Malwactory project</h2>
                     <p>
-                        This project aim to automate the development and the test of malwares. The main objective is to build a entire DevOps
-                        environment, free, reliable and with multiple functionnality in order to help during the development process of malware.
+                        This project aim to help and automate the development and the test of malwares. The main objective is to build a tool 
+                        that can be used in you're development environnement, reliable and with multiple functionnality.
                     </p>
                 </section>
 
@@ -110,9 +107,9 @@
                     <h2>Problem</h2>
                     <p>
                         During the construction of a malware, obfuscation, compilation, junk code integration can be repetitive, especially during
-                        the test phase. Also, analysis may compromise the malware, especially if using VirusTotal or other analysis online tools, because
+                        the test phase, we talking about a sparse environnment. Also, analysis may compromise the malware, especially if using VirusTotal or other analysis online tools, because
                         of the creation of artifact (hash, imphash, JA3/JA3S, network communication an so on...), this is very important to make test 
-                        in a secure network or DevOps environment.
+                        in a well controled network or DevOps environment.
                     </p>
                 </section>
 
@@ -121,95 +118,66 @@
                     <h2>Solution</h2>
                     <p>
                         This project aim to automatized some aspects of malware devlopment processeses. Obfuscation, complementary integration code (like syscall),
-                        junk-code integration, compilation (with LLVM-obfuscator), anti-analysis technics and so on...
-                        We will use fot that gitlab-ci and pipelines for creating jobs. Theses jobs will make all the hard works and developper
+                        junk-code integration, compilation (with LLVM-obfuscator), anti-analysis technics, shellcode malware generation and so on...
+                        We will use for that several tools concentrating into one. Theses tools will make all the hard works and developper
                         will only focus on functionnality of their malware.
                     </p>
                 </section>
 
-                <!-- INTEGRATION SECTION -->
-                <section id="integration" class="content-section">
-                    <h2>INTEGRATION</h2>
-
-                    <!-- PRE-COMMIT SUBSECTION -->
-                    <section id="pre-commit">
-                        <h2>Pre-commit (completary explanation about the technics will be add)</h2>
+                <section id="malwactory_construction" class="content-section">
+                    <h2>How Malwactory is construct</h2>
                         <p>
-                            Pre-commit will be used to make first analysis (hash, yara-rules) to prevent from basic static analysis.
-                            Also, he will make the integration of junk-code, complementary function integration and basic obfuscation before pushing. 
+                            Malwactory have three differents sections. Theses three sections aims to do they own work and can be used easily with the CLI.
+                            They are categorise depending on there purposes. Let's introduce "Malwadd", "Malwobf" and "Malwonder".
                         </p>
                         
-                        <h3>Precommit 1: Syscall Integration (in dev)</h3>
-                        <p>
+                        <h3>Malwadd</h3>
+
+                            <p>Malwadd will add system calls function, functionnality function like anti-analysis, will generate shellcode malware and 
+                            will be improve for more functionnality with time. Let's talk a bit about the syscall integrator
+                            </p>
+
+                            <p>
                             Syscall integration are very hard (for me) so to avoid hours of lecture each time i want to used them correclty,
                             or to avoid the copy-past from previous project or internet, we integrate a process that will replace some intermediate representation
                             in a complete syscall function. 
                             <br>
                             Using a python script and regex, the first task fo the pre-commit will investigate files in "/dev" repository and search
-                            for intermediate representation. For exemple you want to use system calls for allocate memory. You will use NtSyscallAllocateMemory() intermediate 
+                            for intermediate representation (key words). For exemple ,you want to use system calls for allocate memory. You will use NtSyscallAllocateMemory() intermediate 
                             representation directly in the code, which, in this case, is exactly the name of the system call. The script will replace
                             the "symbole" by the entire function made to use it directly. the
                             <br>
                             Syscalls integration have a sort of mutex to avoid double treatment, commit fails and to tell to the developper that this file
-                            have vben treat with the script.
+                            have been treat with the script. The mutex are easy to spot, they are all references about the Dune (Franck Herbert novel) lore.
+                            </p>
 
-                        </p>
-
-                        <h3>Precommit 2: HASH analysis </h2>
                         <p>
-                            Hash analysis is not a reliable way to protect infrastructure from malware, but we need to make this analysis step.
-                            Sometime we can be lazy and we using code from internet, but if the code using is already flaged we need to change it.
-                            Maybe, the code using come from you, but you need to be sure that you don't have artifact outside. 
-                            To keep this step useful it's important to upgrade the hash database with malwarebazaar for exemple.
+                            The shellcode generator aim to create a complete shellcode malware from a C++ file made by the developper. You have three different
+                            options using the shellcode generator. You can create the payloads and the loader. You can create only the loader or you can create only the shellcode.
+                            Soon, a new option will be add. This option aim to generate the entire malware AND the loader. The purpose is to generate a shellcode malware 
+                            that can be used easily for a poc. 
                         </p>
 
-
-                        <h3>Precommit 3: Yara-rules </h3>
                         <p>
-                            Detection phase can be usefull to avoid the use of technics, function or even import that can be easily detected by an AV/EDR.
-                            Yara-rules can be interesting for detect pattern we don't want in the code. Imagine coding a keylogger in c++, maybe the first
-                            idea will be to use Windows API in order to hook the letter press by the target. AV/EDR can detect easilly if an API is using
-                            by a process so we need to avoid them. For that, yara-rules can be usefull in order to detect these API's used in the code. If it detect bad patterns
-                            the pre-commit will be stoped and we will need to change the red part.
-                            <br>
-                            Also, Yara-rules can be used to maintain a good set intrusion or TTPs. Yara-rules can be used for example to detect
-                            whenever some bad technics is used like data transfer to a telegram server. But will detect nothing if data evasion is process
-                            from our victim to a server control maitain by our for example. So using theses rules can leverage the level of technics of the malware
-                            to avoid detection in dynamic analysis.   
-                                               
+                            Of course, the use of the shellcode malware will depend on the user. You can create the malware without the shellcode in it, or with the shellcode in it.
                         </p>
 
-                        <h3>Precommit 4: Junk-Code integration (in dev)</h3>
+
+                         <h3>Malwobf</h3>
                         <p>
-                            This junk-code integration will be used in order to add code that do nothing but make the analysis harder.
-                            "for-loop", "while-loop", variable initialisation or calculation, everything can be used. This part is in
-                            development.
-                        </p>
-                        
-
-                        <h3>Precommit 5: Variable obfuscation</h3>
-                        <p>
-                            This implementation is the first obfuscation used. Changing variable will be more harder to analyse, 
-                            but this is absolutly not a reliable way (in itself). 
-
-                            To avoid the obfuscation of some lines, variable you will need to add at the end of the line a "//nop".
-                            This flag will be used in order to tale the script that nothing need to be change here. 
-
-                            <br>
-                            Variable obfuscation have a sort of mutex to avoid double treatment, commit fails and to tell to the developper that this file
-                            have been treat with the script.
-
-                            More obfuscation technics will be add in jobs pipelines. 
+                            Malwobf will be used in order to obfuscate the malware. Changing variable names, adding junk-code and using LLVM-Obfuscator (not yet)
+                            the purpose of this is to make the malware hard to understand statically and dynamically.
                         </p>
 
+                          <h3>Malwonder</h3>
+                          <p>
+                            The purposes of malwonder is to analyse the code in order to securise the program. Seecking for Windows APPI function, 
+                            code analysis in order to prevent from memory problem, hash analysis and so on are used to prevent problems for the malware.
+                          </p>
 
-                    </section>
 
-                    <!-- PIPELINES SUBSECTION -->
                     <section id="pipelines">
                         <h3>Pipelines</h3>
-                        The aim of pipelines will be to add some anlysis in order to find technics that can be bad for the malware, and to perform
-                        SAST and DAST like an actual antiviruses.
 
 
                         <h4>Job 1</h4>
