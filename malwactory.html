@@ -162,13 +162,44 @@
                             Of course, the use of the shellcode malware will depend on the user. You can create the malware without the shellcode in it, or with the shellcode in it.
                         </p>
 
+                        <h3> How to use Malwadd ?</h3>
 
-                         <h3>Malwobf</h3>
+                        <h3>Malware construction</h3>
+                        <br>
+                        <strong>Malwadd tool is not finish. Here will be explaned the final result of Malwadd tool !!!</strong>
+                        <br>
+                        <br>
+                        <p>
+                            Malwadd tool provide different purposes to help developper to make a malware. From syscall functions to shellcode loader functions,
+                            passing through anti-analysis or anti-VM functions, you have a lot of possibilities. 
+                        </p>
+                        <h4>Adding functions into your malware</h4>
+                        <p>
+                            To use it, you will need python3. You can add System calls function to you're program, for that you need to know the name of the 
+                            function in <em>syscall.txt</em> file. For exemple, i want to use a system call function that allocate memory.
+                        </p>
+                        <img src="assets\image\syscall_choosing.jpg" alt="CL Compiler issue" style="max-width: 100%; border-radius: 5px; margin: 1rem 0;">
+                        <p>
+                            Regarding the <em>syscall.txt</em> the name of the function i want is <strong>NtSyscallAllocateMemory()</strong>. Now in <em>dev/</em>
+                            i place the name of my function into my programm.
+                        </p>
+                        <img src="assets\image\demo_syscall_integration.jpg" alt="CL Compiler issue" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                        <p>
+                            Now that we placed the name of the syscall function we executed the command below :
+                        </p>
+                        <code>python malwadd.py --syscall</code>
+
+                        <br>
+                        <br>
+                        <p>-------------------------------------------------------------------------------------------------------------------</p>
+
+                        <h3>Malwobf</h3>
                         <p>
                             Malwobf will be used in order to obfuscate the malware. Changing variable names, adding junk-code and using LLVM-Obfuscator (not yet)
                             the purpose of this is to make the malware hard to understand statically and dynamically.
                         </p>
-
+                        
                           <h3>Malwonder</h3>
                           <p>
                             The purposes of malwonder is to analyse the code in order to securise the program. Seecking for Windows APPI function, 
