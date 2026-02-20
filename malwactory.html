@@ -178,17 +178,31 @@
                             To use it, you will need python3. You can add System calls function to you're program, for that you need to know the name of the 
                             function in <em>syscall.txt</em> file. For exemple, i want to use a system call function that allocate memory.
                         </p>
-                        <img src="assets\image\syscall_choosing.jpg" alt="CL Compiler issue" style="max-width: 100%; border-radius: 5px; margin: 1rem 0;">
+                        <img src="assets\image\syscall_choosing.jpg" alt="into syscall.txt" style="max-width: 100%; border-radius: 5px; margin: 1rem 0;">
                         <p>
-                            Regarding the <em>syscall.txt</em> the name of the function i want is <strong>NtSyscallAllocateMemory()</strong>. Now in <em>dev/</em>
-                            i place the name of my function into my programm.
+                            Regarding the <em>syscall.txt</em> the name of the function i want is <strong>NtSyscallAllocateMemory</strong>. Now in <em>dev/</em>
+                            i place the name of my function into my programm, it will work as a intermediate representation. 
                         </p>
-                        <img src="assets\image\demo_syscall_integration.jpg" alt="CL Compiler issue" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+                        <img src="assets\image\demo_syscall_integration.jpg" alt="the intermediate representation" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
 
-                        <p>
-                            Now that we placed the name of the syscall function we executed the command below :
+                        <p>you 
+                            Now that we placed the name of the syscall function we execute the command below in the terminal of visual studio or IDE used:
                         </p>
                         <code>python malwadd.py --syscall</code>
+                        <p>After that you will see the entire function placed into the file like this :</p>
+                        <img src="assets\image\syscall_integration_shai.jpg" alt="syscall placed into file" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+                        <p>Now we have the function placed in the file. As you can see in addition we have a commentary at the top of the page
+                        This markdown will work as a mutex. It's here to annonce that the file have been treated and therefore, can't be treated twice by the programm.
+                        The markdown will all be references to Dune lore.   
+                        </p>
+                        <p><strong>This manipulation will be the same if you want to place into you're file a AntiVM function or AntiAnalysis function.
+                        The only difference will be the command and the file name you need to search.[Not finish yet... This feature comming soon...]
+                        </strong>
+                        </p>
+
+                        <h3>Shellcode creator with malwadd</h3>
+                        <p>Let's look into one of the biggest functionnality of Malwactory. The shellcode generator !</p>
+
 
                         <br>
                         <br>
