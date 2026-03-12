@@ -195,13 +195,33 @@
                         This markdown will work as a mutex. It's here to annonce that the file have been treated and therefore, can't be treated twice by the programm.
                         The markdown will all be references to Dune lore.   
                         </p>
-                        <p><strong>This manipulation will be the same if you want to place into you're file a AntiVM function or AntiAnalysis function.
+                        <p><strong>This manipulation will be the same if you want to place into you're file an Anti-VM function or Anti-analysis function.
                         The only difference will be the command and the file name you need to search.[Not finish yet... This feature comming soon...]
                         </strong>
                         </p>
 
                         <h3>Shellcode creator with malwadd</h3>
                         <p>Let's look into one of the biggest functionnality of Malwactory. The shellcode generator !</p>
+
+                        <p>
+                            The shellcode generator will give shellcode based malware using different techniques that aim to inject the shellcode into the target system.
+                            Different techniques are used using this <a href="https://www.ired.team/offensive-security/code-injection-process-injection" target="_blank">website</a>.
+                            The shellcode generator will provide you differents ways to create shellcode based malware. You will be able to generate entirely the shellcpde (in production...) or 
+                            create it piece by piece and be aware of the entire process. Let's develop this part.
+                        </p>
+
+                        <h4>Generate shellcode piece by piece</h4>
+                        <p>
+                            You want to create "piece by piece" a shellcode code based malware using Malwactory. First you need to have a payload.
+                            You can use malwadd to help you create a payload using syscall functions, or simply using the windows API. For this test we will
+                            use an AI generated script that play with files, because at this time, syscalls functions generated functionnalitys are not finish.
+                            In this PoC, we will not focused on evasion, we will just show how to use properly Malwactory in order to create a little shellcode based malware.
+                            But keep in mind that you can completly add evasion techniques and every thing you want.
+                        </p>
+
+                        <p>
+                            Our paylaod will seek for <strong>win.ini</strong> file and read the file and display the entire information into a windows pop-up.
+                        </p>
 
 
                         <br>
