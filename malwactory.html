@@ -78,7 +78,10 @@
                 </div>
 
                 <div class="info-box info-warning">
-                        <p>⚠️ This infrastructure is designed for security research and development purposes.</p>
+                        <p>
+                            ⚠️This page and this project are for educational and informational purposes only.
+                           <strong>Keep in mind that, attacking a system without prior consent is strictly prohibited.</strong>
+                        </p>
                 </div>
 
                 <!-- TL;DR SECTION -->
@@ -221,8 +224,65 @@
 
                         <p>
                             Our paylaod will seek for <strong>win.ini</strong> file and read the file and display the entire information into a windows pop-up.
+                            Here an exemple of what the payloads doing.
+                        </p>
+                        <img src="assets\image\payload_test.jpg" alt="exemple of the payload" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                        <p>
+                            Let's begin our first shellcode loader !
                         </p>
 
+                        <h4>Shellcode loader tutorial with Malwactory :</h4>
+
+                        <p>
+                            First of all, we need to have our payloads written in C++ or C. Malwactory have two scripts that aim to create a shellcode, one for the C++ and the other one of C.
+                            Our code here is in C++, but if yours are not, you just will need to change one thing in you're command. 
+                            The second step will be to create our shellcode. I use <a href="https://github.com/TheWover/donut" target="_blank">Donut</a> for that.
+                            Let's create our shellcode !
+                        </p>
+
+                        <img src="assets\image\shellcode_creation.jpg" alt="creation of the shellcode" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                        <p><strong>For people using a C written payload, use this command :</strong> <em>python malwadd.py --shellcode-c-windows -c <"file_path"> --flag 2</em></p>
+
+                        <p>
+                            Yo have now a .bin and .exe file. You can delete the .exe file, it will not be usefull. 
+                            Let's focuse on our .bin file. In it, we can extract the shellcode. Use this command in the terminal : 
+                            <em>python malwadd.py --extract-shellcode --file-path .\dev\payloads.bin</em> 
+                            <br>
+                            <br>
+                            After the command, a file named <em>shellcode.txt</em> will appear in you're <em>/dev</em> directory, just copy paste the entire
+                            line into you're loader. In my loader (using one of the function available in Malwactory), i will need to paste the shellcode directly into the code.
+                            But some other loader will not work this way, like, the loader will extract directly the shellcode from a .bin file. Make sure to use correclty
+                            the .bin file !
+                        </p>
+                        <img src="assets\image\extract_shellcode.jpg" alt="the extract shellcode" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+                        <img src="assets\image\copy_paste_shellcode.jpg" alt="copy the shellcode into the loader file code" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                        <p>
+                            Now, our loader is ready (i will not explicitly talk about the creation of the loader but keep in mind that it's one of the function
+                            available into the database of method.)
+                            Now, we need to create our loader.exe, for that we will use a simple command : <em>python malwadd.py --shellcode-cpp-windows --loader .\dev\<'loader_file'> --flag 3</em>
+                            Using this command, you will have you're loader !
+                            
+                        </p>
+                        <img src="assets\image\created_loader.jpg" alt="copy the shellcode into the loader file code" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                        <p>Now, we run our loader.exe</p>
+
+                        <img src="assets\image\loader_executed.jpg" alt="copy the shellcode into the loader file code" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                        <p>
+                            Because of the technic used, the pop-up  displayed in the desktop. But it works !!! Here, i disabled Windows Defender,
+                            like i said before we are not focused on evasion but just on a little PoC. But as you can think, we can easily add some evasion technics
+                            like Anti-VM, Anti-AV, Anti-analysis and so on...
+                        </p>
+
+                        <h3>What's next ?</h3>
+
+                        <p><strong>For the futur</strong> of this project, i will add a complete generation of the shellcode. With just ONE command in the shell, 
+                            you will have you're loader with the technics you want, adding the anti-"something" you want to use.
+                        </p>
 
                         <br>
                         <br>
