@@ -136,22 +136,21 @@
                         
                         <h3>Malwadd</h3>
 
-                            <p>Malwadd will add system calls function, functionnality function like anti-analysis, will generate shellcode malware and 
-                            will be improve for more functionnality with time. Let's talk a bit about the syscall integrator
+                            <p>Malwadd will add functionnality function like anti-analysis, will generate shellcode malware and 
+                            will be improve for more functionnality with time. Let's talk a bit about the function integrator.
                             </p>
 
                             <p>
-                            Syscall integration are very hard (for me) so to avoid hours of lecture each time i want to used them correclty,
+                            Function integration are very hard (for me) so to avoid hours of lecture each time i want to used them correclty,
                             or to avoid the copy-past from previous project or internet, we integrate a process that will replace some intermediate representation
-                            in a complete syscall function. 
+                            in a complete function. 
                             <br>
-                            Using a python script and regex, the first task fo the pre-commit will investigate files in "/dev" repository and search
-                            for intermediate representation (key words). For exemple ,you want to use system calls for allocate memory. You will use NtSyscallAllocateMemory() intermediate 
-                            representation directly in the code, which, in this case, is exactly the name of the system call. The script will replace
-                            the "symbole" by the entire function made to use it directly. the
+                            Using a python script and regex, the first task for the pre-commit will investigate files in "/dev" repository and search
+                            for "intermediate representation" (key words). For exemple ,you want to use an Anti-analysis function, you will use Antianalysis() intermediate 
+                            representation directly in the code. The script will replace the "symbole" by the entire function made to use it directly. the
                             <br>
-                            Syscalls integration have a sort of mutex to avoid double treatment, commit fails and to tell to the developper that this file
-                            have been treat with the script. The mutex are easy to spot, they are all references about the Dune (Franck Herbert novel) lore.
+                            Function integration have a sort of mutex to avoid double treatment, commit fails and to tell to the developper that this file
+                            have been treat with the script. The mutex are easy to spot, they are all references about Dune (Franck Herbert novel) lore.
                             </p>
 
                         <p>
@@ -173,7 +172,7 @@
                         <br>
                         <br>
                         <p>
-                            Malwadd tool provide different purposes to help developper to make a malware. From syscall functions to shellcode loader functions,
+                            Malwadd tool provide different purposes to help developper to make a malware. From function functions to shellcode loader functions,
                             passing through anti-analysis or anti-VM functions, you have a lot of possibilities. 
                         </p>
                         <h4>Adding functions into your malware</h4>
@@ -189,7 +188,7 @@
                         <img src="assets\image\demo_syscall_integration.jpg" alt="the intermediate representation" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
 
                         <p>you 
-                            Now that we placed the name of the syscall function we execute the command below in the terminal of visual studio or IDE used:
+                            Now that we placed the name of the function we execute the command below in the terminal of visual studio or IDE used:
                         </p>
                         <code>python malwadd.py --syscall</code>
                         <p>After that you will see the entire function placed into the file like this :</p>
@@ -216,7 +215,7 @@
                         <h4>Generate shellcode piece by piece</h4>
                         <p>
                             You want to create "piece by piece" a shellcode code based malware using Malwactory. First you need to have a payload.
-                            You can use malwadd to help you create a payload using syscall functions, or simply using the windows API. For this test we will
+                            You can use malwadd to help you create a payload using functions using direct syscall function, or simply using the windows API. For this test we will
                             use an AI generated script that play with files, because at this time, syscalls functions generated functionnalitys are not finish.
                             In this PoC, we will not focused on evasion, we will just show how to use properly Malwactory in order to create a little shellcode based malware.
                             But keep in mind that you can completly add evasion techniques and every thing you want.
@@ -302,7 +301,7 @@
 
 
                     <section id="pipelines">
-                        <h3>Pipelines</h3>
+                        <h3>Job0</h3>
 
 
                         <h4>Job 1</h4>
