@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoxyHack - 2026</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cyber-theme.css">
+</head>
+<body>
+    <div class="container">
+        <!-- SIDEBAR NAV -->
+      <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">Fournoy - Yugortha </h1>
+                <p class="tagline">Cybersecurity projects</p>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item active" data-page="home">
+                    <span class="icon">💻</span> Main
+                </a>
+                
+                <div class="nav-dropdown">
+                    <button class="nav-item dropdown-toggle">
+                        <span class="icon">👾</span> Malware
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="malware1.html" class="dropdown-item">Malware I</a>
+                        <a href="malwactory.html" class="dropdown-item active">Malwactory</a>
+                    </div>
+                </div>
+
+                <div class="nav-dropdown">
+                    <button class="nav-item dropdown-toggle">
+                        <span class="icon">🔐</span> Lab
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="FoxyHack-2026.html" class="dropdown-item">Soon</a>
+                    </div>
+                </div>
+
+                <div class="nav-dropdown">
+                    <button class="nav-item dropdown-toggle">
+                        <span class="icon">🛠️</span> Tools
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="puzzlesql.html" class="dropdown-item">PuzzleSQL</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+<section id="compilator" class="page">
+                <div class="page-header cyber-header">
+                    <h1 class="page-title">Soon</h1>
+                    <p class="page-subtitle">FoxyHack is a hackathon made by the french air and space force.
+                        The main objective is to provide a entire infrastructure resilient, sovereign and securise. 
+                        Here we will focus on the prototype made during the end of the hackathon. 
+                    </p>
+                </div>
+            
+                <div class="toc-section">
+                    <h2>Soon</h2>
+                    <ul class="toc">
+                        <li><a href="#TLDR">TL;DR</a></li>
+                        <li><a href="#Context">Context</a></li>
+                        <li><a href="#technics_stack">Technic stack</a></li>
+                        <li><a href="#partI">Part I</a></li>
+                        <li><a href="#partII">Part II</a></li>
+                        <li><a href="#partIII">Part III</a></li>
+                        <li><a href="#partIV">Part IV</a></li>
+                    </ul>
+                </div>
+
+                <section id="TLDR" class="content-section">
+                    <h2>TL;DR</h2>
+                    <h4>
+                    The infrastructure provide sovereign technologies and resilient application that can be used in a entire infrastructure. 
+                    We using a micro-services architecture used to easily add or manipulate some micro-services. 
+                    Everything is on a virtualise kubernetes, a cluster virtualised by SUSE Haverster.
+                    Due to devlopment of LLM application, we incorpore in this prototype an LLM in order to record information gathered during meetings, 
+                    crisis response teams and so on, theses informations is used to create a markdown gantt diagram.
+                    About the security of the infrastructure, we using a Data Centric Security architecture and eBPF technologie to secure network and data.
+                    </h4>
+
+                </section>
+
+                <section id="Context" class="content-section">
+                    <h2>Context</h2>
+                    <h4>
+                    Due to the monopilization of some technologie by company, an entire infrastructure can be breakdown in certain case.
+                    The main objective of the hackathon is to provide an infrastructure using french technologies or european technologies.
+                    Of course, we can also use open-source technologies but with certainty of a hight european/french community.
+                    </h4>
+                </section>
+
+                <section id="technics_stack" class="content-section">
+                    <h2>Technic stack</h2>
+                        <ul>
+                            <li><strong>Harvester</strong> : To create and manage virtualisation on the infrastructure</li>
+                            <li><strong>K3s</strong> : Create, manage and configure container</li>
+                            <li><strong>K9s</strong> : GUI tool in order to manage the container in the infrastructure</li>
+                            <li><strong>Quarkus</strong> : Used to make APIs</li>
+                            <li><strong>Cilium</strong> : Security and manager tool using eBPF techologie</li>
+                            <li><strong>Samba DC AD</strong> : Active Directory</li>
+                            <li><strong>Authentik</strong> The SSO technologie used to organize the various data regard the habilitation of each of these.</li>
+                            <li><strong>Docker</strong> : Another containerization tool for LLM used</li>
+                        </ul>
+
+
+                </section>
+
+                <section id="partI" class="content-section">
+                    <h2>Part I</h2>
+                    <h4>In this part we will focus on the contairization and virtualisation</h4>
+                </section>
+
+                <section id="partII" class="content-section">
+                    <h2>Part II</h2>
+                    <h4>In this part we will discuss about the Docker and LLM utilization</h4>
+                </section>
+
+                <section id="partIII" class="content-section">
+                    <h2>Part III</h2>
+                    <h4>The Data Centric Security</h4>
+                </section>
+
+                <section id="partIV" class="content-section">
+                    <h2>Part IV</h2>
+                    <h4>The use of Cilium and eBPF</h4>
+                </section>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

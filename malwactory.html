@@ -36,7 +36,7 @@
                         <span class="icon">🔬</span> Lab
                     </button>
                     <div class="dropdown-menu">
-                        <a href="lab_1.html" class="dropdown-item">Soon</a>
+                        <a href="FoxyHack-2026.html" class="dropdown-item">Soon</a>
                     </div>
                 </div>
 
@@ -67,7 +67,7 @@
                         <li><a href="#problem">Problem</a></li>
                         <li><a href="#solution">Solution</a></li>
                         <li><a href="#malwactory_construction">Malwactory construction</a>
-                        <li><a href="#pipelines">Pipelines</a></li>
+                        <li><a href="#SAST">SAST analysis</a></li>
                         <li><a href="#conclusion">Conclusion</a></li>
                         <li><a href="#annexes">Annexes</a></li>
                     </ul>
@@ -300,18 +300,22 @@
                           </p>
 
 
-                    <section id="pipelines">
-                        <h3>Job0</h3>
+                    <section id="SAST">
+                        <h2>The use of CI for SAST</h2>
+                        <p>
+                            In order to provide efficient malware, we need to test the malware into a secure and unconnected area to avoid artifact leaking.
+                            The use of CI can be one of the solution, in term, a simple docker can be used to provide an entire SAST for  PE executable.
+                        </p>
+
+                        <h3>optimisation testing</h3>
+                        <p>
+                            At first, we are doing simple verification about the size of .bin file containing the payload. Despite the attack methodology
+                            it's always important to ensure that our payloads do not have a big weight. 
+                        </p>
 
 
-                        <h4>Job 1</h4>
-                        <p></p>
-
-                        <h4>Job 2</h4>
-                        <p></p>
-
-                        <h4>Job 3</h4>
-                        <p></p>
+                        <h4>Opsec Testing</h4>
+                 
                     </section>
                 </section>
 
