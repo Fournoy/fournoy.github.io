@@ -304,17 +304,29 @@
                         <h2>The use of CI for SAST</h2>
                         <p>
                             In order to provide efficient malware, we need to test the malware into a secure and unconnected area to avoid artifact leaking.
-                            The use of CI can be one of the solution, in term, a simple docker can be used to provide an entire SAST for  PE executable.
+                            The use of CI can be one of the solution, in term, a simple docker can be used to provide an entire SAST for PE executable.
                         </p>
 
                         <h3>optimisation testing</h3>
+                        <h4>Checking the weight of payloads</h4>
                         <p>
                             At first, we are doing simple verification about the size of .bin file containing the payload. Despite the attack methodology
-                            it's always important to ensure that our payloads do not have a big weight. 
+                            it's always important to ensure that our payloads do not have a big weight. Here we make sure that our payload have a reasonable weight.
+                            <b>Because the project is in production (09/04/2026) the weight is abusively hight.</b>
+                            <br>
+                            You can see below the test in the alpine machine. It will search for every ".bin" files in the /dev in order to perform
+                            a test with 'stat' command. 
+                        </p>
+                        <img src="assets\image\opsec_weightanalyse.jpg" alt="copy the shellcode into the loader file code" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+                        <br>
+                        <h4>Checking memory leak statically</h4>
+                        <p>
+                            I could run several differents jobs using different tools for this one, or even use gitlab runner to make a statical analysis and 
+                            a dynamic analysis to find potential memory leak. But i will not deep dive this topic for now. I use cppCheck for this job, it will 
+                            warning if it find any disturbing memory leak.
                         </p>
 
-
-                        <h4>Opsec Testing</h4>
+                        <h3>Opsec Testing</h3>
                  
                     </section>
                 </section>
