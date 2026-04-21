@@ -348,16 +348,57 @@
                         <p>
                             Here come an interesting test (more because of how it work). The purpose of this test is to know if URl in coded files is generate or not.
                             For that, we using a probabilistic automata harded coded in the framework. The Job will use the script and test all the URl 
-                            found in every coded files to know if they are generated or not. This test aim to improve the stealthiness of infection, data extraction and 
+                            found in every coded files to know if they are generated or not. This test aim to improve the stealthiness of loding phase, data extraction phase and 
                             for fileless-malware.
                         </p>
 
                         <strong> How the probabilistic automata work </strong>
                         <p>
-                            
+                            The probabilistic automata will first traine itself with a data bank of know and legitime url. This is the training data set.
+                            For each url, he will calculate the link between a letter and another. For each new, or know link, it will add a number. At the end, 
+                            we have a percentage and it will trigger or not the url. You can see below an exemple for the word "google".
                         </p>
+                        <br>
+                        <pre><code>Initial state: total_score = 0.0
+1. Pair (G, O)
+├─ 'G' in matrix?
+│   ├─ YES: 'O' follows 'G'?
+│   │   ├─ YES ──► total_score += 0.15 (prob G->O)
+│   │   └─ NO ───► total_score -= 10.0 (transition penalty)
+│   └─ NO ───────► total_score -= 10.0 (unknown letter penalty)
 
+2. Pair (O, O)
+├─ 'O' in matrix?
+│   ├─ YES: 'O' follows 'O'?
+│   │   ├─ YES ──► total_score += 0.05 (prob O->O)
+│   │   └─ NO ───► total_score -= 10.0
+│   └─ NO ───────► total_score -= 10.0
 
+3. Pair (O, G)
+├─ 'O' in matrix?
+│   ├─ YES: 'G' follows 'O'?
+│   │   ├─ YES ──► total_score += 0.02 (prob O->G)
+│   │   └─ NO ───► total_score -= 10.0
+│   └─ NO ───────► total_score -= 10.0
+
+4. Pair (G, L)
+├─ 'G' in matrix?
+│   ├─ YES: 'L' follows 'G'?
+│   │   ├─ YES ──► total_score += 0.08 (prob G->L)
+│   │   └─ NO ───► total_score -= 10.0
+│   └─ NO ───────► total_score -= 10.0
+
+5. Pair (L, E)
+├─ 'L' in matrix?
+│   ├─ YES: 'E' follows 'L'?
+│   │   ├─ YES ──► total_score += 0.20 (prob L->E)
+│   │   └─ NO ───► total_score -= 10.0
+│   └─ NO ───────► total_score -= 10.0</code></pre>
+
+                <p>
+                    After a million of test like this, we have our weight for each path. The script will do the same test, regardless the weight, in URLs found
+                    by the script. If the value, at the end of the test, is below 30, the url will be automatically suspected as malicious because of the generated pattern
+                </p>
                     </section>
                 </section>
 
