@@ -323,11 +323,41 @@
                         <p>
                             I could run several differents jobs using different tools for this one, or even use gitlab runner to make a statical analysis and 
                             a dynamic analysis to find potential memory leak. But i will not deep dive this topic for now. I use cppCheck for this job, it will 
-                            warning if it find any disturbing memory leak.
+                            warning us if it find any disturbing memory leak.
                         </p>
 
+
                         <h3>Opsec Testing</h3>
-                 
+                        
+                        <h4>IAT analysis </h4>
+                        <p>
+                            Here we will search for externals functions list (API) call by the programm to understand what the program will use.
+                            After, we going to compare the list with a black list with banned API. You can see below the .yaml code to understand more.
+                            We will trigger only if we find a black listed API. 
+                        </p>
+                        <img src="assets\image\IAT_checker.png.jpg" alt="IAT checker code form the yaml file" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                        <h4>Entropy analysis</h4>
+                        <p>
+                            The entropy analysis will analyse the randomness of data into a file. The result is between a 0 and 8, highest is the number,
+                            more entropy we have, so more randomness. Analysis tools will trigger file with a high number of entropy. So it's important to test this. 
+                            With entropy we can also know if a payload is wrapped. 
+                        </p>
+
+                        <h4>URL checker</h4>
+                        <p>
+                            Here come an interesting test (more because of how it work). The purpose of this test is to know if URl in coded files is generate or not.
+                            For that, we using a deterministic automata harded coded in the framework. The Job will use the script and test all the URl 
+                            found in every coded files to know if they are generated or not. This test aim to improve the stealthiness of infection, data extraction and 
+                            for fileless-malware.
+                        </p>
+
+                        <h5>How the probabilistic automata work :</h5>
+                        <p>
+                            
+                        </p>
+
+
                     </section>
                 </section>
 
