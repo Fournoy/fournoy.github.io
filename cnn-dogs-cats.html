@@ -260,9 +260,24 @@
 
                         <img src="assets\image\layer_3.png" alt="entire layers" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
 
-                        
-
+                        More we go on layer, more we add filter (x2 each times). More we go into layer, less we have resolution (because of the MaxPooling function)
+                        but with multiple filter (x2 each time) we have 64 or 128 or 256 windows that will slide into the image. We have for exemple 256 filters
+                        and theses filters will help us to detect a maximum of details.
                     </p>
+
+                    <p>
+                        Now we have our different convolution and pooling phase. The last steps before the compilation is the Flatten and the Dense methods.
+                        Flattent() will reduce the size of the input before processing during the training step, it will reduce the multidimensionnal data into a one dimension data (a line of number). These flattened data will be use in the Dense() method
+                        where they will be fully connected. Every neuron if each layers will be connected to the previous one. And as you can see below, the second
+                        Dense() function use a "sigmoid" function into the "activation" argument. This aim to have a value between 0 and 1, very usefull when we want probability.
+                    </p>
+                    <img src="assets\image\flatten_phase.png" alt="flatten phase python code" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                    <p>
+                        Now let's see the code for the compile phase. This phase aim to configure the model for the training. 
+                    </p>
+                    <img src="assets\image\modele_compile.png" alt="compilation phase python code" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
                     <p>
                         mathematical explanation ???
                     </p>
