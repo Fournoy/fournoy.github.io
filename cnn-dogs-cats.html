@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convolutional Neural Network: Sorting Photos of Dogs and Cats</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cyber-theme.css">
+    <style>
+        .page-header.cyber-header.blue::before {
+            background: linear-gradient(90deg, transparent, rgba(0, 153, 255, 0.3), transparent) !important;
+        }
+
+        .content-section h2.blue {
+            color: #0099FF;
+            border-bottom-color: #0099FF;
+        }
+        
+        .info-blue {
+            background-color: rgba(0, 153, 255, 0.15);
+            border-left-color: #0099FF;
+        }
+
+        .toc-section.blue {
+            background-color: rgba(0, 153, 255, 0.15);
+            border-left: 4px solid #0099FF;
+        }
+        
+        .toc a {
+            color: #00FFAA;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+            color: #0099FF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- SIDEBAR NAV -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">Fournoy - Yugortha</h1>
+                <p class="tagline">Cybersecurity projects</p>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item" data-page="home">
+                    <span class="icon">💻</span> Main
+                </a>
+                
+                <div class="nav-dropdown">
+                    <button class="nav-item dropdown-toggle">
+                        <span class="icon">👾</span> Malware
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="malware1.html" class="dropdown-item">Malware I</a>
+                        <a href="malwactory.html" class="dropdown-item">Malwactory</a>
+                    </div>
+                </div>
+
+                <div class="nav-dropdown">
+                    <button class="nav-item dropdown-toggle">
+                        <span class="icon">🔬</span> Lab
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="FoxyHack-2026.html" class="dropdown-item">Soon</a>
+                    </div>
+                </div>
+
+                <div class="nav-dropdown">
+                    <button class="nav-item dropdown-toggle">
+                        <span class="icon">🤖</span> AI/ML
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="cnn-dogs-cats.html" class="dropdown-item active">CNN Dogs & Cats</a>
+                    </div>
+                </div>
+
+                <div class="nav-dropdown">
+                    <button class="nav-item dropdown-toggle">
+                        <span class="icon">🛠️</span> Tools
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="puzzlesql.html" class="dropdown-item">PuzzleSQL</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <section id="cnn-project" class="page">
+                <div class="page-header cyber-header blue">
+                    <h1 class="page-title blue">Convolutional Neural Network: Sorting Photos of Dogs and Cats</h1>
+                    <p class="page-subtitle">Deep Learning project for automatic image classification</p>
+                </div>
+
+                <div class="toc-section blue">
+                    <h2>Summary</h2>
+                    <ul class="toc">
+                        <li><a href="#introduction">Introduction to CNN</a></li>
+                        <li><a href="#concepts-cnn">Fundamental Concepts</a></li>
+                        <li><a href="#exemple-dogs-cats">Example: Dogs and Cats</a></li>
+                        <li><a href="#project">Project Description</a></li>
+                        <li><a href="#objectif">Objective</a></li>
+                        <li><a href="#environnement">Environment</a></li>
+                        <li><a href="#methode">Method</a></li>
+                        <li><a href="#ameliorations">Improvements</a></li>
+                        <li><a href="#conclusion">Conclusion</a></li>
+                        <li><a href="#sources">Sources</a></li>
+                    </ul>
+                </div>
+
+                <div class="info-box info-blue">
+                    <p>This project aim to introduce myself in Deep Learnin and specifically on convolutional neural network</p>
+                </div>
+
+                <!-- INTRODUCTION SECTION -->
+                <section id="introduction" class="content-section">
+                    <h2 class="blue">Introduction to Convolutional Neural Network (CNN)</h2>
+                    <p>
+                        A Convolutional Neural Network (CNN) is a type of artificial neural network specifically designed to process images. 
+                    </p>
+                    <p>
+                        CNNs is used the field of computer vision and are used in many applications like image classificatio. Their effectiveness stems from their ability 
+                        to automatically learn filters (or kernels) that detect relevant features in images.
+                    </p>
+                </section>
+
+                <!-- CONCEPTS SECTION -->
+                <section id="concepts-cnn" class="content-section">
+                    <h2 class="blue">Fundamental Concepts of CNNs</h2>
+                    
+                    <h3>Convolutional Layers</h3>
+                    <p>
+                        The convolutional layer is the core of a CNN. It uses small filters (typically 3x3 or 5x5) that slide over the image 
+                        to extract features taht can be lines or borders for exemple.
+                    </p>
+
+                    <h3>Activation Functions ReLu (Rectifier Linear Unit)</h3>
+                    <p>
+                        Activation functions ReLU will keep pixels with positive value, the negative one will be turn to 0.
+                        ReLu is import to shape correctly the input image, creating at the end, a "feature map".
+                    </p>
+
+                    <h3>Pooling Layers</h3>
+                    <p>
+                        Pooling reduces the dimensionality of data while preserving the most relevant information. Max pooling, for example, 
+                        retains the maximum value in a given region. This reduces the number of parameters. 
+                    </p>
+
+                    <h3>Fully Connected Layers</h3>
+                    <p>
+                        After several convolutional and pooling layers, flattened data is passed through fully connected (or dense) layers 
+                        that enable the network to make final classification decisions.
+                    </p>
+
+                   
+                </section>
+
+                <!-- PROJECT DESCRIPTION SECTION -->
+                <section id="project" class="content-section">
+                    <h2 class="blue">Project Description</h2>
+                    <p>
+                        This project aims to put CNN concepts into practice by creating a model capable of automatically classifying 
+                        photos of dogs and cats. It's an excellent starting point for understanding how convolutional neural networks work in practice.
+                    </p>
+                </section>
+
+                <!-- OBJECTIF SECTION -->
+                <section id="objectif" class="content-section">
+                    <h3 class="blue">Main Objective</h3>
+                    <p>
+                        <strong>Sort photos of cats and dogs using a CNN in Python.</strong>
+                    </p>
+                    <p>
+                        Create and train a binary classification model that can:
+                    </p>
+                    <ul>
+                        <li>Load and preprocess a dataset containing images of dogs and cats</li>
+                        <li>Build a CNN architecture</li>
+                        <li>Train the model on training data</li>
+                        <li>Evaluate performance on a test dataset</li>
+                        <li>Upgrade the model</li>
+                    </ul>
+                </section>
+
+                <!-- ENVIRONNEMENT SECTION -->
+                <section id="environnement" class="content-section">
+                    <h3 class="blue">Environment and Tools</h3>
+                    <p>
+                        <strong>Platform:</strong> Google Colab (Google Colaboratory)
+                    </p>
+                    <p>
+                        <strong>Main Libraries:</strong>
+                    </p>
+                    <ul>
+                        <li><strong>TensorFlow:</strong> Open-source framework for machine learning and deep learning</li>
+                        <li><strong>Keras:</strong> High-level API integrated into TensorFlow, facilitating the creation and training of neural network models</li>
+                    </ul>
+                    <p>
+                        <strong>Advantages of Google Colab:</strong> Free access to GPUs (Graphics Processing Units) that accelerate training, 
+                        ease of use, integration with Google Drive, no installation required.
+                    </p>
+                </section>
+
+                <!-- METHODE SECTION -->
+                <section id="methode" class="content-section">
+                    <h2 class="blue">Method and Implementation</h2>
+                    
+                    <h3>Part 1: Data Preparation and Loading (Preprocessing)</h3>
+                    <p>
+                        The first step is to prepare image. For that we will use "tensorflow_datasets". It help us to use data without installing big dataset. 
+                        We can put the data directly into the code and gain time during coding. For this little project, it's very interesting.
+
+                        Before treating the image we need to split the image into to distinct groups. The first one (80% of the dataset) will
+                        be used in order to train the model. The 20 other pourcent will aim to evaluate the reel accuracy of the model.
+
+                        <img src="assets\image\data_process_cnn.png" alt="python code for the tensorflow_dataset" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                        After that, we need to resize the dataset. Each image will be resize in order to respect a certain dimension that help the model to process inputs.
+                        Picture have a range of 255 value. Using it directly will crash this little model. To avoid that we will divide by 255 each pixel of the image.
+                        Know we will have a range of value for each pixel between <strong>0.0</strong> and <strong>1.0</strong>.
+
+                        This preprocessing step is very important for our model. It will keep a good format during the entire training and help to reduce the data process.
+
+                        <img src="assets\image\preprocessing.png" alt="python code for the preprocessing phase" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                    </p>
+
+                    <h3>Part 2: CNN Model Construction and Configuration</h3>
+                    <p>
+                        For this second step, we will construct our model using keras.Sequential(), it will bring us a neural network structured in different
+                        layers. For the first layer, we will use a convolutional function. 
+
+                        The convolutional phase will use a kernel (a 3x3 matrice in this case) with random weight for each value. The kernel will slide into an image and will
+                        calculate a value in the output. This convolutional phase will detect the general pattern (general "texture"?) of the image. Here a little exemple form 
+                        Kaggle website : <a href="https://www.kaggle.com/code/ryanholbrook/convolution-and-relu" target="_blank">exemple</a>
+
+                        <img src="assets\image\kaggle_exemple_conv.png" alt="convolution phase exemple with different kernel (matrice)" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                        Know let's see the python code for the first layer of the model.
+                        <img src="assets\image\first_layer_cnn.png" alt="convolution phase exemple with different kernel (matrice)" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+                        As we can see, the "keras.layers.Conv2D()" have different argument, the image show also the explanation fo the different argument.
+                        We will focus on the ReLu (Rectifier Linear Unit) because it is a very important step. The ReLu will avoid negative value (for exemple it will be black pixels).
+                        These negative value will become 0 and the other stay unchanged.
+
+                        If convolutional function focuse on general form, ReLu function will detect lines and borders.
+                        After the ReLu treatment here what the input image look like (from <a href="https://www.kaggle.com/code/ryanholbrook/convolution-and-relu" target="_blank">Kaggle</a>)
+                        <img src="assets\image\ReLu_treatment.png" alt="ReLu treatment exemple car" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                        Before to get into the next layer, we can see another function used. This is the MaxPooling() function. This one will
+                        keep only the maximum value of the image. Here an exemple of the effect on a image training. 
+
+                        <img src="assets\image\maxpooling_exemple.png" alt="ReLu treatment exemple car" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                        Know let's make the other layers in order to perform a more deep training. Here, this is the code with 3 layers.
+
+                        <img src="assets\image\layer_3.png" alt="entire layers" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                        
+
+                    </p>
+                    <p>
+                        mathematical explanation ???
+                    </p>
+
+                    
+
+                    <h3>Part 3: Training and Evaluation</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    </p>
+                    <p>
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis 
+                        unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+                    </p>
+                </section>
+
+                <!-- AMELIORATIONS SECTION -->
+                <section id="ameliorations" class="content-section">
+                    <h2 class="blue">Possible Improvements</h2>
+                    
+                    <h3>Adding Supplementary Layers</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    </p>
+                    <p>
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis 
+                        unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+                    </p>
+
+                    <h3>Implementation of Forced Kernel</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    </p>
+                    <p>
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis 
+                        unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+                    </p>
+                </section>
+
+                <!-- CONCLUSION SECTION -->
+                <section id="conclusion" class="content-section">
+                    <h2 class="blue">Conclusion</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    </p>
+                    <p>
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis 
+                        unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+                    </p>
+                </section>
+
+                <!-- SOURCES SECTION -->
+                <section id="sources" class="content-section">
+                    <h2 class="blue">Sources and References</h2>
+                    <ul>
+                        <li><a href="https://keras.io/api/layers/pooling_layers/max_pooling2d/" target="_blank">Keras - Max Pooling 2D Documentation</a></li>
+                        <li><a href="https://www.tensorflow.org/api_docs/python/tf/keras/metrics" target="_blank">TensorFlow - Keras Metrics API</a></li>
+                        <li><a href="https://www.kaggle.com/code/ryanholbrook/the-convolutional-classifier" target="_blank">Kaggle - The Convolutional Classifier</a></li>
+                    </ul>
+                </section>
+
+            </section>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
