@@ -348,10 +348,11 @@
                     <img src="assets\image\graph_2.png" alt="illustration of the dropout method" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
                     
                     As you can observe, the first graph decrease throught epoch, that's a good sign explaning that our model tends towards good weights.
-                    But in the fifth epoch, val_loss encrese with a pic at the tenth epoch, despite the loss continue to decrease. We see here an overfitting.
+                    But in the fifth epoch, val_loss encrease with a pic at the tenth epoch, despite the loss continue to decrease. We see here an overfitting.
                     But this is due to the hight number of epoch, here we need to stop at the good moment (with EarlyStopping). 
                     The final val_loss is 0.3451 and the val_accuracy is 0.8547. This better than the first try ! But we want a more precise model.
                     In the perfect case, the loss and val_loss need to tends towards zero. Accuracy and val_accuracy need to tends toward 1. 
+                    In our case, val_accuracy and accuracy must converge in 0.9 or upper value, with a val_loss as little as possible. 
                     <br>
                     As we see, the Dropout have a rate of 0.3. Now, we need to test the Dropout with a 0.5 value to see if it will change something.
 
