@@ -333,7 +333,29 @@
                     </p>
 
                    <h3>Using Dropout</h3>
+                    <p>The first technics we will see is the Dropout method. This method aim to reduce the overfitting effect by turning off randomly 
+                    some input from the next layers. Dropout try to alterate the network in order to improve the training phase. Here a good illustration from
+                    <a href="https://pyimagesearch.com/2021/05/14/convolutional-neural-networks-cnns-and-layer-types/#:~:text=higher%20classification%20accuracy.-,Dropout,the%20expense%20of%20training%20accuracy." target="_blank">pyimagesearch</a> website.
+                    <img src="assets\image\dropout.png" alt="illustration of the dropout method" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+                    We need to precise a float number between 0 and 1, this float number will be the fraction of the network that will be « turn off ».
+                    Here, we made it with a 0.3 number.
+                    <img src="assets\image\dropout_code.png" alt="illustration of the dropout method" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+                    </p>
+                    
+                    <p>
+                    Here the graph of loss and val_loss value, and accuracy and val_accuracy value.
+                    <img src="assets\image\graph_1.png" alt="illustration of the dropout method" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+                    <img src="assets\image\graph_2.png" alt="illustration of the dropout method" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+                    
+                    As you can observe, the first graph decrease throught epoch, that's a good sign explaning that our model tends towards good weights.
+                    But in the fifth epoch, val_loss encrese with a pic at the tenth epoch, despite the loss continue to decrease. We see here an overfitting.
+                    But this is due to the hight number of epoch, here we need to stop at the good moment (with EarlyStopping). 
+                    The final val_loss is 0.3451 and the val_accuracy is 0.8547. This better than the first try ! But we want a more precise model.
+                    In the perfect case, the loss and val_loss need to tends towards zero. Accuracy and val_accuracy need to tends toward 1. 
+                    <br>
+                    As we see, the Dropout have a rate of 0.3. Now, we need to test the Dropout with a 0.5 value to see if it will change something.
 
+                    </p> 
 
                     <h3>Using L2 Regularisation </h3>
 
