@@ -354,7 +354,15 @@
                     In the perfect case, the loss and val_loss need to tends towards zero. Accuracy and val_accuracy need to tends toward 1. 
                     In our case, val_accuracy and accuracy must converge in 0.9 or upper value, with a val_loss as little as possible. 
                     <br>
-                    As we see, the Dropout have a rate of 0.3. Now, we need to test the Dropout with a 0.5 value to see if it will change something.
+                    As we see, the Dropout have a rate of 0.3. Now, we need to test the Dropout with a 0.5 value to see if it will change something. Here you can see 
+                    the representative curve of the val_loss and loss with a Dropout of 0.5.
+                    <img src="assets\image\graph_3.png" alt="illustration of the dropout method (0.5)" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                    As we see in graphs, we have a less chaotic behaviour during the overfitting. It's interesting in order to prevent overfitting more
+                    efficietly, but the parameter is maybe to hight for the CNN model used here. We need to test several different parameter to  
+                    have the best parameter number for the Dropout method. With a 0.5 parameter, 50% of the input is deactivated. This hight number can be messy 
+                    this small network. Let's try with 0.4 parameter for the Dropout.
+                    
 
                     </p> 
 
