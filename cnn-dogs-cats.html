@@ -363,11 +363,20 @@
                     have the best parameter number for the Dropout method. With a 0.5 parameter, 50% of the input is deactivated. This hight number can be messy 
                     this small network. Let's try with 0.4 parameter for the Dropout.
                     
+                    <img src="assets\image\graph_4.png" alt="illustration of the dropout method (0.5)" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+                    Aa you can see, the curve is a little different than the one with a 0.5 of Dropout. But we have an overfitting in the fouth epoch, like 
+                    the previous one. 
 
+                    So the dropout technics is interesting and give us some amelioration for or model, but we need to test another technics. 
+                        
                     </p> 
 
                     <h3>Using L2 Regularisation </h3>
-
+                    The L2 Regularisation will, like the dropout, work during the training phase. The main objective here is to reduce the variance, by playing 
+                    with bias during training phase. 
+                    <br>
+                    The main objective here is to add penalty to weights in order to ajust the model during th testing phase. We will slightly increase the 
+                    bias in order to reduce the variance. 
 
                     <h3>Using Data Augmentation</h3>
 
