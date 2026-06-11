@@ -367,20 +367,24 @@
                     Aa you can see, the curve is a little different than the one with a 0.5 of Dropout. But we have an overfitting in the fouth epoch, like 
                     the previous one. 
 
-                    So the dropout technics is interesting and give us some amelioration for or model, but we need to test another technics. 
+                    So the dropout technics is interesting and give us some amelioration for our model. Now, let's see if we can uopgrade the val_accuracy by playing with
+                    the model itself.
                         
                     </p> 
 
-                    <h3>Using L2 Regularisation </h3>
-                    The L2 Regularisation will, like the dropout, work during the training phase. The main objective here is to reduce the variance, by playing 
-                    with bias during training phase. 
+                    <h3>VGG16 architecture </h3>
+                    The VGG16 architecture was first release in 2015. This architecture give to this project significant change for the val_accuracy. We reach a 0.90 of val_accuracy
+                    and a 0.24 of val_loss. But first let's talk about the VGG16.
+
+                    mettre image de l'archi
+                    
+                    As you can see the model is way more complete. We have several different layers and with a certain logic. The VGG16 will work more deeply in the image
+                    giving more details so more parameter (39 938 241 parameters). Here the curve of the model during 30 epochs. 
                     <br>
-                    The main objective here is to add penalty to weights in order to ajust the model during th testing phase. We will slightly increase the 
-                    bias in order to reduce the variance. 
-
-                    <h3>Using Data Augmentation</h3>
-
-                    <h3>EarlyStopping</h3>
+                    courbe loss et val_loss et screen de l'output loss et val_loss(avec epoch 13 en évidence
+                    <br>
+                    As you can see, the curve have some chaotic behaviour but we reach the best model we have since now for this project, in the epoch 13. Now, we need to try
+                    some technics in order to prevent this behaviour. The main objective here is to have the best model of CNN with a VGG16 architecture. 
 
 
                     </p>
