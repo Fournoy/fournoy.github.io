@@ -375,17 +375,36 @@
                     <h3>VGG16 architecture </h3>
                     The VGG16 architecture was first release in 2015. This architecture give to this project significant change for the val_accuracy. We reach a 0.90 of val_accuracy
                     and a 0.24 of val_loss. But first let's talk about the VGG16.
-
-                    mettre image de l'archi
-                    
-                    As you can see the model is way more complete. We have several different layers and with a certain logic. The VGG16 will work more deeply in the image
-                    giving more details so more parameter (39 938 241 parameters). Here the curve of the model during 30 epochs. 
                     <br>
-                    courbe loss et val_loss et screen de l'output loss et val_loss(avec epoch 13 en évidence
+                    <img src="assets\image\VGG_16_architecture.png" alt="VGG16 architecture" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
+                    <br>
+                    <br>
+                    The VGG16, as you can see, have several layers giving a more deeply work on the input. We reach almost 37 million parameter for this one.
+                    For this first version we didn't add any type of overfitting correction. The several layers of convolution and ReLu give us a model
+                    that keep more details. More we go deeply into the network, more we have convolutional layers, more the model have skills to detect
+                    line, curve, schema and so on. Her ethe curve of the loss and val_loss. 
+                    <br>
+                    <img src="assets\image\graph_6.png" alt="graph for the VGG16 without overfitting correction" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+                    <img src="assets\image\epoch_13.png" alt="epoch 13" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+
                     <br>
                     As you can see, the curve have some chaotic behaviour but we reach the best model we have since now for this project, in the epoch 13. Now, we need to try
-                    some technics in order to prevent this behaviour. The main objective here is to have the best model of CNN with a VGG16 architecture. 
-
+                    some technics in order to prevent this behaviour. The main objective here is to have the best model of CNN with a VGG16 architecture. At the end, we have a overfitting issue, so
+                    we need to add some technics that will help us to avoid this problem (but you will see that we will have this problem even with corrections).
+                    <br>
+                    <br>
+                    Here the curve for the last model of this project.
+                    <br>
+                    <img src="assets\image\graph_7.png" alt="graph for the VGG16 without overfitting correction" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+                    <br>
+                    We have also a chaotic curve but with a certain degrowth tendency. Even with this behaviour, we reach our best model with
+                    0.93 of val_accuracy and 0.24 of val_loss. That's good. 
+                    <img src="assets\image\epoch_28.png" alt="epoch 28" style="max-width: 70%; border-radius: 5px; margin: 1rem 0;">
+                    <br>
+                    We used the dropout technics with a 0.5 parameter but we also add a BatchNormalizer to the program. Before each ReLu
+                    function, we add a BatchNormalizer. Before each input, the BatchNormalizer will normalize the output, so, it will make the average 
+                    close to 0 and the gap close to one. This action will be made into a batch of output and not in all the input.
 
                     </p>
                 </section>
@@ -394,13 +413,13 @@
                 <section id="conclusion" class="content-section">
                     <h2 class="blue">Conclusion</h2>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    </p>
-                    <p>
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis 
-                        unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+                        Computer vision is a very interesting domain with several concepts. Here we study the concept of deep learning for a picture classifier.
+                        The main objective was to have a model that can classify picture of dog and cat. We reach a model with 93% of accuracyand with a 23%
+                        of confidence during fault. That's good, but surely not enough compared to actual models. We test a simple model and we have been blocked
+                        because of a overfitting problem. Even with technics to rectifie this, our model was not good enough. So we change our approch to 
+                        test a different model. The VGG16 was a very good model for first test and with overfitting correction, we see a reel difference.
+                        Now, we can study more complexe architecture and test other technics of overfitting countermeasure. But we stop there for this first
+                        computer vision problem. Thanks for you're reading !
                     </p>
                 </section>
 
@@ -413,7 +432,11 @@
                         <li><a href="https://www.kaggle.com/code/ryanholbrook/the-convolutional-classifier" target="_blank">Kaggle - The Convolutional Classifier</a></li>
                         <li><a href="https://medium.com/biased-algorithms/batch-normalization-in-cnn-81c0bd832c63" target="_blank">BatchNormalizer()</a></li>
                         <li><a href="https://karan3-zoh.medium.com/dropout-a-simple-way-to-prevent-neural-networks-from-overfitting-d50186502d1d" target="_blank">DropOut()</a></li>
-
+                        <li><a href="https://github.com/keras-team/keras-cv/issues/1662" target="_blank">Issue with the VGG16 - Overfitting()</a></li>
+                        <li><a href="https://viso.ai/deep-learning/vgg-very-deep-convolutional-networks/" target="_blank">DropOut()</a></li>
+                        <li><a href="https://codesignal.com/learn/courses/improving-neural-networks-with-pytorch/lessons/adding-dropout-to-neural-networks-in-pytorch" target="_blank">Adding Dropout in a deep learning network()</a></li>
+                        <li><a href="https://lekhuyen.medium.com/an-overview-of-vgg16-and-nin-models-96e4bf398484" target="_blank">VGG16 model ()</a></li>
+                        <li><a href="https://inside-machinelearning.com/batch-normalization-la-meilleure-technique-pour-ameliorer-son-deep-learning/" target="_blank">BatchNormalization (french)/a></li>
                     </ul>
                 </section>
 
